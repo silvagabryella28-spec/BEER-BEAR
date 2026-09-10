@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beer Bear — Cervejaria Gourmet</title>
+    <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap)" rel="stylesheet">
+    <style>
+        :root {
+            --mel: #C17817;
+            --cafe: #3E2723;
+            --matcha: #6B8E23;
+            --limao: #D4A843;
+            --frutas: #B71C1C;
+            --fundo: #1A120B;
+            --fundo-claro: #2C1810;
+            --creme: #F5E6D3;
+            --dourado: #D4A843;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--fundo);
+            color: var(--creme);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo-font {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Navegação */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(26, 18, 11, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 168, 67, 0.2);
+        }
+
+        .nav-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dourado);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo::before {
+            content: "🐻";
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--creme);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--dourado);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--dourado);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cart {
+            background: var(--dourado);
+            color: var(--fundo);
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .nav-cart:hover {
+            transform: scale(1.05);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            background: 
+                radial-gradient(ellipse at center, rgba(212,168,67,0.1) 0%, transparent 70%),
+                linear-gradient(180deg, var(--fundo) 0%, var(--fundo-claro) 100%);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='[w3.org](http://www.w3.org/2000/svg)'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4a843' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border: 1px solid var(--dourado);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--dourado);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 span {
+            color: var(--dourado);
+            display: block;
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
+            color: rgba(245, 230, 211, 0.8);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .hero-bears {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .hero-bear {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border: 3px solid;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .hero-bear:hover {
+            transform: translateY(-10px);
+        }
+
+        .hero-bear.mel { background: var(--mel); border-color: #E6A532; }
+        .hero-bear.cafe { background: var(--cafe); border-color: #5D4037; }
+        .hero-bear.matcha { background: var(--matcha); border-color: #8FBC4F; }
+        .hero-bear.limao { background: var(--limao); border-color: #F0D878; }
+        .hero-bear.frutas { background: var(--frutas); border-color: #D32F2F; }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--dourado);
+            color: var(--fundo);
+        }
+
+        .btn-primary:hover {
+            background: #E6C56E;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212,168,67,0.3);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--dourado);
+            color: var(--dourado);
+        }
+
+        .btn-secondary:hover {
+            background: var(--dourado);
+            color: var(--fundo);
+        }
+
+        /* Seções */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--dourado);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: rgba(245, 230, 211, 0.7);
+            font-size: 1.1rem;
+        }
+
+        /* Cervejas */
+        .cervejas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .cerveja-card {
+            background: linear-gradient(145deg, var(--fundo-claro) 0%, rgba(44,24,16,0.8) 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(212,168,67,0.1);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cerveja-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            transition: height 0.4s;
+        }
+
+        .cerveja-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212,168,67,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .cerveja-card:hover::before {
+            height: 8px;
+        }
+
+        .cerveja-card.mel::before { background: var(--mel); }
+        .cerveja-card.cafe::before { background: var(--cafe); }
+        .cerveja-card.matcha::before { background: var(--matcha); }
+        .cerveja-card.limao::before { background: var(--limao); }
+        .cerveja-card.frutas::before { background: var(--frutas); }
+
+        .cerveja-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            border: 4px solid;
+        }
+
+        .cerveja-card.mel .cerveja-icon { background: rgba(193,120,23,0.2); border-color: var(--mel); }
+        .cerveja-card.cafe .cerveja-icon { background: rgba(62,39,35,0.4); border-color: var(--cafe); }
+        .cerveja-card.matcha .cerveja-icon { background: rgba(107,142,35,0.2); border-color: var(--matcha); }
+        .cerveja-card.limao .cerveja-icon { background: rgba(212,168,67,0.2); border-color: var(--limao); }
+        .cerveja-card.frutas .cerveja-icon { background: rgba(183,28,28,0.2); border-color: var(--frutas); }
+
+        .cerveja-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .cerveja-card .tipo {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+
+        .cerveja-card .desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .cerveja-card .preco {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dourado);
+            margin-bottom: 1rem;
+        }
+
+        .cerveja-card .preco span {
+            font-size: 1rem;
+            opacity: 0.6;
+        }
+
+        .btn-add {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--dourado);
+            background: transparent;
+            color: var(--dourado);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-add:hover {
+            background: var(--dourado);
+            color: var(--fundo);
+        }
+
+        /* Produtos */
+        .produtos {
+            background: var(--fundo-claro);
+        }
+
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .produto-card {
+            background: var(--fundo);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(212,168,67,0.1);
+        }
+
+        .produto-card:hover {
+            transform: scale(1.03);
+            border-color: rgba(212,168,67,0.3);
+        }
+
+        .produto-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .produto-card h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dourado);
+        }
+
+        .produto-card p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+
+        .produto-preco {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--creme);
+        }
+
+        /* Kit Degustação */
+        .kit-section {
+            background: linear-gradient(135deg, var(--fundo) 0%, var(--fundo-claro) 50%, var(--fundo) 100%);
+            position: relative;
+        }
+
+        .kit-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .kit-visual {
+            display: flex;
+            justify-content: center;
+            gap: -10px;
+        }
+
+        .kit-bottle-mini {
+            width: 80px;
+            height: 140px;
+            border-radius: 15px 15px 10px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 -5px;
+            transform: rotate(-5deg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .kit-bottle-mini:nth-child(2) { transform: rotate(0deg) translateY(-10px); z-index: 2; }
+        .kit-bottle-mini:nth-child(3) { transform: rotate(5deg); }
+        .kit-bottle-mini:nth-child(4) { transform: rotate(10deg); }
+        .kit-bottle-mini:nth-child(5) { transform: rotate(15deg); }
+
+        .kit-info h2 {
+            font-size: 2.5rem;
+            color: var(--dourado);
+            margin-bottom: 1rem;
+        }
+
+        .kit-info p {
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .kit-includes {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .kit-includes li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .kit-includes li::before {
+            content: "✓";
+            color: var(--dourado);
+            font-weight: bold;
+        }
+
+        .kit-preco {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dourado);
+        }
+
+        .kit-preco span {
+            font-size: 1rem;
+            opacity: 0.6;
+            text-decoration: line-through;
+            margin-left: 0.5rem;
+        }
+
+        /* Sobre */
+        .sobre-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .sobre-content p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--dourado);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        footer {
+            background: #0D0805;
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid rgba(212,168,67,0.1);
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            color: var(--dourado);
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            opacity: 0.7;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .footer-col h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--dourado);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-col a {
+            color: rgba(245, 230, 211, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--dourado);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212,168,67,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            opacity: 0.5;
+            font-size: 0.9rem;
+        }
+
+        .socials {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .socials a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(212,168,67,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dourado);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .socials a:hover {
+            background: var(--dourado);
+            color: var(--fundo);
+        }
+
+        /* Carrinho Drawer */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            max-width: 90vw;
+            height: 100vh;
+            background: var(--fundo-claro);
+            z-index: 2001;
+            padding: 2rem;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid rgba(212,168,67,0.2);
+        }
+
+        .cart-drawer.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(212,168,67,0.2);
+        }
+
+        .cart-header h3 {
+            font-size: 1.3rem;
+            color: var(--dourado);
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--creme);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .close-cart:hover {
+            background: rgba(212,168,67,0.1);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 3rem 0;
+            opacity: 0.5;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(212,168,67,0.1);
+        }
+
+        .cart-item-info h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-info p {
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .qty-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            border: 1px solid rgba(212,168,67,0.3);
+            background: transparent;
+            color: var(--creme);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-footer {
+            padding-top: 1rem;
+            border-top: 1px solid rgba(212,168,67,0.2);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dourado);
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 1rem;
+            background: var(--dourado);
+            color: var(--fundo);
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-checkout:hover {
+            background: #E6C56E;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--dourado);
+            color: var(--fundo);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            z-index: 3000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .kit-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stats {
+                gap: 1.5rem;
+            }
+
+            .hero-bears {
+                gap: 0.5rem;
+            }
+
+            .hero-bear {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--fundo);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--dourado);
+            border-radius: 4px;
+        }
+
+        /* Animações */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-bear {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-bear:nth-child(2) { animation-delay: 0.2s; }
+        .hero-bear:nth-child(3) { animation-delay: 0.4s; }
+        .hero-bear:nth-child(4) { animation-delay: 0.6s; }
+        .hero-bear:nth-child(5) { animation-delay: 0.8s; }
+
+        /* Newsletter */
+        .newsletter {
+            background: var(--fundo-claro);
+            text-align: center;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 1px solid rgba(212,168,67,0.3);
+            background: var(--fundo);
+            color: var(--creme);
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(245, 230, 211, 0.5);
+        }
+
+        .newsletter-form button {
+            padding: 1rem 2rem;
+            background: var(--dourado);
+            color: var(--fundo);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: #E6C56E;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegação -->
+    <nav>
+        <a href="#" class="nav-logo">BEER BEAR</a>
+        <ul class="nav-links">
+            <li><a href="#cervejas">Cervejas</a></li>
+            <li><a href="#produtos">Produtos</a></li>
+            <li><a href="#kit">Kit Degustação</a></li>
+            <li><a href="#sobre">Nossa História</a></li>
+        </ul>
+        <a href="#" class="nav-cart" onclick="toggleCart()">🛒 <span id="cart-count">0</span></a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Est. 2026 — Cervejaria Gourmet</div>
+            <h1>A arte de beber <span>com carinho</span></h1>
+            <p class="hero-sub">Cinco ursos. Cinco personalidades. Uma paixão inabalável por cerveja artesanal de verdade. Descubra o sabor que combina com o seu espírito.</p>
+            
+            <div class="hero-bears">
+                <div class="hero-bear mel" title="Mel — Urso Pardo">🐻</div>
+                <div class="hero-bear cafe" title="Café com Chocolate — Urso Preto">🐻‍❄️</div>
+                <div class="hero-bear matcha" title="Matcha — Panda">🐼</div>
+                <div class="hero-bear limao" title="Limão Siciliano — Urso Polar">❄️</div>
+                <div class="hero-bear frutas" title="Frutas Vermelhas — Urso Vermelho">🍓</div>
+            </div>
+
+            <div class="hero-cta">
+                <a href="#cervejas" class="btn btn-primary">Explorar Cervejas →</a>
+                <a href="#kit" class="btn btn-secondary">Kit Degustação</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cervejas -->
+    <section id="cervejas">
+        <div class="section-header">
+            <h2>Nossas Cervejas</h2>
+            <p>Cada urso carrega uma essência única. Qual é o seu?</p>
+        </div>
+        <div class="cervejas-grid">
+            <div class="cerveja-card mel">
+                <div class="cerveja-icon">🐻</div>
+                <h3>Mel</h3>
+                <div class="tipo">Urso Pardo</div>
+                <p class="desc">Doçura natural do mel silvestre combinada com o amargor suave do lúpulo. Uma cerveja acolhedora, como um abraço de urso.</p>
+                <div class="preco">R$ 18,90 <span>/ 330ml</span></div>
+                <button class="btn-add" onclick="addToCart('Mel', 18.90, '🐻')">Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="cerveja-card cafe">
+                <div class="cerveja-icon">🐻‍❄️</div>
+                <h3>Café com Chocolate</h3>
+                <div class="tipo">Urso Preto</div>
+                <p class="desc">Intensa e sedutora. Notas de café arábica torrado e cacau 70% criam uma experiência robusta para paladares exigentes.</p>
+                <div class="preco">R$ 21,90 <span>/ 330ml</span></div>
+                <button class="btn-add" onclick="addToCart('Café com Chocolate', 21.90, '🐻‍❄️')">Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="cerveja-card matcha">
+                <div class="cerveja-icon">🐼</div>
+                <h3>Matcha</h3>
+                <div class="tipo">Panda</div>
+                <p class="desc">O equilíbrio perfeito entre tradição e inovação. Chá matcha ceremonial japonês encontra a refrescância de uma cerveja leve.</p>
+                <div class="preco">R$ 22,90 <span>/ 330ml</span></div>
+                <button class="btn-add" onclick="addToCart('Matcha', 22.90, '🐼')">Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="cerveja-card limao">
+                <div class="cerveja-icon">❄️</div>
+                <h3>Limão Siciliano</h3>
+                <div class="tipo">Urso Polar</div>
+                <p class="desc">Frescor ártico em cada gole. Limão siciliano real e cascas naturais trazem acidez brilhante e aroma inconfundível.</p>
+                <div class="preco">R$ 19,90 <span>/ 330ml</span></div>
+                <button class="btn-add" onclick="addToCart('Limão Siciliano', 19.90, '❄️')">Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="cerveja-card frutas">
+                <div class="cerveja-icon">🍓</div>
+                <h3>Frutas Vermelhas</h3>
+                <div class="tipo">Urso Vermelho</div>
+                <p class="desc">Vibrante e apaixonada. Morango, framboesa e amora se misturam em uma sinfonia de cor e sabor que conquista desde o primeiro gole.</p>
+                <div class="preco">R$ 20,90 <span>/ 330ml</span></div>
+                <button class="btn-add" onclick="addToCart('Frutas Vermelhas', 20.90, '🍓')">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtos -->
+    <section id="produtos" class="produtos">
+        <div class="section-header">
+            <h2>Produtos Exclusivos</h2>
+            <p>Leve a Beer Bear para todos os momentos da sua vida</p>
+        </div>
+        <div class="produtos-grid">
+            <div class="produto-card">
+                <span class="produto-emoji">🍺</span>
+                <h4>Garrafas</h4>
+                <p>330ml em formato de urso, edição limitada</p>
+                <div class="produto-preco">A partir de R$ 18,90</div>
+            </div>
+            <div class="produto-card">
+                <span class="produto-emoji">🥫</span>
+                <h4>Latas</h4>
+                <p>Design exclusivo, prática para qualquer ocasião</p>
+                <div class="produto-preco">A partir de R$ 12,90</div>
+            </div>
+            <div class="produto-card">
+                <span class="produto-emoji">🧸</span>
+                <h4>Ursos de Pelúcia</h4>
+                <p>Coleção completa dos 5 personagens</p>
+                <div class="produto-preco">R$ 89,90 cada</div>
+            </div>
+            <div class="produto-card">
+                <span class="produto-emoji">🔑</span>
+                <h4>Chaveiros</h4>
+                <p>Abre-garrafas miniatura, todos os sabores</p>
+                <div class="produto-preco">R$ 34,90 cada</div>
+            </div>
+            <div class="produto-card">
+                <span class="produto-emoji">🍻</span>
+                <h4>Porta-Copos</h4>
+                <p>Conjunto com 5 designs, madeira premium</p>
+                <div class="produto-preco">R$ 59,90</div>
+            </div>
+            <div class="produto-card">
+                <span class="produto-emoji">👕</span>
+                <h4>Camisetas</h4>
+                <p>Estampas exclusivas da coleção Beer Bear</p>
+                <div class="produto-preco">R$ 79,90</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kit Degustação -->
+    <section id="kit" class="kit-section">
+        <div class="kit-content">
+            <div class="kit-visual">
+                <div class="kit-bottle-mini" style="background: var(--mel);">🐻</div>
+                <div class="kit-bottle-mini" style="background: var(--cafe);">🐻‍❄️</div>
+                <div class="kit-bottle-mini" style="background: var(--matcha);">🐼</div>
+                <div class="kit-bottle-mini" style="background: var(--limao);">❄️</div>
+                <div class="kit-bottle-mini" style="background: var(--frutas);">🍓</div>
+            </div>
+            <div class="kit-info">
+                <h2>Kit Degustação</h2>
+                <p>A maneira perfeita de conhecer toda a família Beer Bear. Um pack especial com as 5 cervejas em formato de mini garrafas de 200ml, ideal para presentear ou descobrir seu favorito.</p>
+                <ul class="kit-includes">
+                    <li>5 mini garrafas de 200ml (uma de cada sabor)</li>
+                    <li>Porta-copo exclusivo Beer Bear</li>
+                    <li>Guia de degustação ilustrado</li>
+                    <li>Embalagem premium em madeira</li>
+                </ul>
+                <div class="kit-preco">R$ 79,90 <span>R$ 99,90</span></div>
+                <br>
+                <button class="btn btn-primary" onclick="addToCart('Kit Degustação', 79.90, '📦')">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre">
+        <div class="section-header">
+            <h2>Nossa História</h2>
+            <p>De uma ideia ursina para o mundo</p>
+        </div>
+        <div class="sobre-content">
+            <p>A Beer Bear nasceu em 2026 da paixão por cervejas que contam histórias. Cada receita foi desenvolvida para refletir a personalidade de um urso — do melhor amigo acolhedor ao aventureiro ousado.</p>
+            <p>Utilizamos ingredientes naturais, processos artesanais e muito carinho em cada lote. Nossos ursos não são apenas mascotes: eles são a alma de cada gole.</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Sabores Únicos</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Artesanal</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Conservantes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="section-header">
+            <h2>Junte-se à Família</h2>
+            <p>Receba novidades, lançamentos e ofertas exclusivas dos nossos ursos</p>
+        </div>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Bem-vindo à família Beer Bear! 🐻');">
+            <input type="email" placeholder="Seu melhor e-mail" required>
+            <button type="submit">Assinar</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>🐻 BEER BEAR</h3>
+                <p>Cervejaria Gourmet fundada em 2026. Produzimos cervejas artesanais com personalidade, utilizando ingredientes naturais e processos sustentáveis. Cada urso é uma história. Cada gole, uma experiência.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Produtos</h4>
+                <ul>
+                    <li><a href="#cervejas">Cervejas</a></li>
+                    <li><a href="#produtos">Merchandising</a></li>
+                    <li><a href="#kit">Kits Especiais</a></li>
+                    <li><a href="#">Edições Limitadas</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="#sobre">Nossa História</a></li>
+                    <li><a href="#">Processo Artesanal</a></li>
+                    <li><a href="#">Sustentabilidade</a></li>
+                    <li><a href="#">Trabalhe Conosco</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ajuda</h4>
+                <ul>
+                    <li><a href="#">Entregas</a></li>
+                    <li><a href="#">Trocas e Devoluções</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Beer Bear Cervejaria Gourmet. Todos os direitos reservados.</p>
+            <div class="socials">
+                <a href="#">📘</a>
+                <a href="#">📸</a>
+                <a href="#">🐦</a>
+                <a href="#">▶️</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Carrinho -->
+    <div class="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer">
+        <div class="cart-header">
+            <h3>🛒 Seu Carrinho</h3>
+            <button class="close-cart" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <div class="cart-empty">Seu carrinho está vazio 🍺</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cart-total">R$ 0,00</span>
+            </div>
+            <button class="btn-checkout" onclick="showToast('Pedido finalizado! Urso a caminho 🐻📦')">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        let cart = [];
+        
+        function addToCart(name, price, emoji) {
+            const existing = cart.find(item => item.name === name);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ name, price, emoji, qty: 1 });
+            }
+            updateCart();
+            showToast(`${emoji} ${name} adicionado!`);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                removeFromCart(index);
+            } else {
+                updateCart();
+            }
+        }
+
+        function updateCart() {
+            const count = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-count').textContent = count;
+            
+            const itemsContainer = document.getElementById('cart-items');
+            const totalEl = document.getElementById('cart-total');
+            
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = '<div class="cart-empty">Seu carrinho está vazio 🍺</div>';
+                totalEl.textContent = 'R$ 0,00';
+                return;
+            }
+            
+            let html = '';
+            let total = 0;
+            
+            cart.forEach((item, i) => {
+                const subtotal = item.price * item.qty;
+                total += subtotal;
+                html += `
+                    <div class="cart-item">
+                        <div style="font-size: 2rem;">${item.emoji}</div>
+                        <div class="cart-item-info" style="flex:1;">
+                            <h4>${item.name}</h4>
+                            <p>R$ ${item.price.toFixed(2).replace('.', ',')}</p>
+                            <div class="cart-item-qty">
+                                <button class="qty-btn" onclick="updateQty(${i}, -1)">−</button>
+                                <span>${item.qty}</span>
+                                <button class="qty-btn" onclick="updateQty(${i}, 1)">+</button>
+                            </div>
+                        </div>
+                        <div style="font-weight:700; color: var(--dourado);">
+                            R$ ${subtotal.toFixed(2).replace('.', ',')}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            itemsContainer.innerHTML = html;
+            totalEl.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        function toggleCart() {
+            document.querySelector('.cart-overlay').classList.toggle('active');
+            document.querySelector('.cart-drawer').classList.toggle('active');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
